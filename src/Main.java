@@ -1,9 +1,10 @@
 import java.util.Scanner;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         System.out.println("""
                  _       __________    __________  __  _________   __________     ________  ________   ____________  ______  __________     _________   _____ _____   ______\s
@@ -68,47 +69,37 @@ public class Main {
                 """);
 
 
-        System.out.println("""
-                 ____                                                 _                       _                         _                \s
-                |  _ \\  _ __    ___    ___   ___      ___    _ __   | |_    ___    _ __     | |_     ___       _ __   | |   __ _   _   _\s
-                | |_) | | '__|  / _ \\ / __| / __|    / _ \\ | '_ \\ | __|  / _ \\ | '__|    | __|   / _ \\    | '_ \\ | |  / _` | | | | |
-                |  __/  | |    |  __/ \\__ \\ \\__ \\   |  __/ | | | | | |_  |  __/ | |      | |_   | (_) |    | |_) | | | | (_| | | |_| |
-                |_|     |_|     \\___| |___/ |___/    \\___| |_| |_|  \\__|  \\___| |_|      \\__|  \\___/    | .__/  |_|  \\__,_|\\__, |
-                                                                                                               |_|                  |___/\s""".indent(1));
+        System.out.println("  ____                                               _                     _                       _                 \n" +
+                " |  _ \\   _ __    ___   ___   ___      ___   _ __   | |_    ___   _ __    | |_    ___      _ __   | |   __ _   _   _ \n" +
+                " | |_) | | '__|  / _ \\ / __| / __|    / _ \\ | '_ \\  | __|  / _ \\ | '__|   | __|  / _ \\    | '_ \\  | |  / _` | | | | |\n" +
+                " |  __/  | |    |  __/ \\__ \\ \\__ \\   |  __/ | | | | | |_  |  __/ | |      | |_  | (_) |   | |_) | | | | (_| | | |_| |\n" +
+                " |_|     |_|     \\___| |___/ |___/    \\___| |_| |_|  \\__|  \\___| |_|       \\__|  \\___/    | .__/  |_|  \\__,_|  \\__, |\n" +
+                "                                                                                          |_|                  |___/ ");
 
 
         Scanner stringInput = new Scanner(System.in);
         Scanner input = new Scanner(System.in);
 
-        String[] symbols = {"{$}", "{€}", "{J}", "{7}"};
-
         boolean x = true;
 
         int counterWins = 0;
         int counterLoss = 0;
-        int eth;
-        int ethSpin = 0;
+        int eth = 0;
+        int creditPerSpin;
 
-
+        String[] symbols = {"{$}", "{€}", "{J}", "{7}"};
         String question = stringInput.nextLine();
+
+
+
+
         System.out.println();
 
         System.out.println("How much ETH would you like to deposit");
         int deposit = input.nextInt();
 
-        eth = deposit;
-
         System.out.println("How much would you like to spin for");
-        int creditPerSpin = input.nextInt();
-
-        while (deposit == 0) {
-
-            System.out.println("eth = 0");
-
-
-        } while (eth < ethSpin){
-            System.out.println("eth < ethSpin");
-        }
+        creditPerSpin = input.nextInt();
 
 
         while (x) {
@@ -201,6 +192,8 @@ public class Main {
             }
             System.out.println("| " + randomSymbol1 + " | " + randomSymbol2 + " | " + randomSymbol3 + " | " + randomSymbol4 + " |");
 
+            TimeUnit.SECONDS.sleep(1);
+
 
             if ((randomSymbol1 == randomSymbol2)
 
@@ -217,9 +210,18 @@ public class Main {
                 counterWins++;
                 eth = deposit + creditPerSpin;
                 System.out.println("\n" + " Jackpot!");
+                TimeUnit.SECONDS.sleep(1);
+
                 System.out.println("\n" + "Wins: " + counterWins + "Losses: " + counterLoss);
+                TimeUnit.SECONDS.sleep(1);
                 System.out.println("\n" + "Etherium: " + eth);
+
+
+
             } else {
+
+
+
                 counterLoss++;
 
                 if (deposit < creditPerSpin) {
@@ -227,9 +229,17 @@ public class Main {
                     System.out.println("\n" + "Credit: 0");
                 }
                 System.out.println("\n" + " No wins");
+                TimeUnit.SECONDS.sleep(1);
+
                 System.out.println("\n" + "Wins: " + counterWins + " " + "Losses: " + counterLoss);
+                TimeUnit.SECONDS.sleep(1);
+
                 System.out.println("\n" + "Credit: " + eth);
             }
+
+
+
+
 
             x = false;
             System.out.println("\n" + "Would you like to play again?");
@@ -247,6 +257,9 @@ public class Main {
                 x = false;
 
             }
+
+
+
 
         }
     }
